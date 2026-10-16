@@ -1,0 +1,16 @@
+/*
+!/.gitignore
+!/package.json
+!/package-lock.json
+!/.eleventy.js
+!/netlify.toml
+!/README.md
+!/src/
+!/lib/
+!/scripts/
+!/tests/
+!/docs/
+node_modules/
+_site/
+.DS_Store
+.superpowers/
