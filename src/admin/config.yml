@@ -1,0 +1,138 @@
+# backend is replaced in Task 10 with the block DecapBridge generates.
+backend:
+  name: git-gateway
+  branch: main
+local_backend: true
+publish_mode: editorial_workflow
+site_url: https://imaobongodutola.com
+display_url: https://imaobongodutola.com
+logo_url: https://imaobongodutola.com/assets/brand/logo.png
+media_folder: src/assets/img/uploads
+public_folder: assets/img/uploads
+
+collections:
+  - name: messages
+    label: Messages
+    files:
+      - name: messages
+        label: Messages (Messages page; the first two also show on the homepage)
+        file: src/_data/messages.json
+        fields:
+          - label: Messages
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - label: YouTube link
+                name: youtube
+                widget: string
+                hint: Paste the link from YouTube's Share button, e.g. https://youtu.be/…
+                pattern: ['(youtu\.be/|youtube\.com/|^[\w-]{11}$)', "Must be a YouTube link"]
+              - { label: Thumbnail image, name: thumbnail, widget: image }
+              - { label: Small line above the title, name: subtitle, widget: string, required: false }
+              - { label: Title, name: title, widget: string }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
+
+  - name: gallery
+    label: Gallery
+    files:
+      - name: gallery
+        label: Gallery photos
+        file: src/_data/gallery.json
+        fields:
+          - label: Photos
+            name: items
+            widget: list
+            summary: "{{fields.alt}}"
+            fields:
+              - { label: Photo, name: image, widget: image }
+              - { label: Describe the photo (for blind visitors and Google), name: alt, widget: string }
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - { label: "Conferences & preaching", value: conferences }
+                  - { label: "Ministry & impartation", value: ministry }
+                  - { label: "Crusades & gatherings", value: crusades }
+
+  - name: books
+    label: Books
+    files:
+      - name: books
+        label: Books (Store page and homepage)
+        file: src/_data/books.json
+        fields:
+          - label: Books
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Cover, name: cover, widget: image }
+              - { label: Describe the cover, name: cover_alt, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Subtitle (gold line), name: tagline, widget: string, required: false }
+              - { label: Description, name: description, widget: text }
+              - label: Selar link
+                name: selar_url
+                widget: string
+                pattern: ['^https?://', "Must start with https://"]
+              - { label: Feature this book on the homepage, name: featured, widget: boolean, default: false, required: false }
+              - { label: Homepage line (optional), name: feature_lead, widget: string, required: false }
+              - { label: Homepage description (optional), name: feature_blurb, widget: text, required: false }
+
+  - name: testimonies
+    label: Testimonies
+    files:
+      - name: testimonies
+        label: Testimonies (homepage)
+        file: src/_data/testimonies.json
+        fields:
+          - label: Testimonies
+            name: items
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Testimony, name: quote, widget: text }
+              - { label: First name, name: name, widget: string }
+              - { label: City, name: city, widget: string, required: false }
+
+  - name: home
+    label: Homepage text
+    files:
+      - name: home
+        label: Homepage text and gallery strip
+        file: src/_data/home.json
+        fields:
+          - { label: Line above your name, name: hero_eyebrow, widget: string }
+          - { label: Quote under your name, name: hero_quote, widget: text }
+          - { label: About heading, name: about_heading, widget: string }
+          - { label: About intro, name: about_lead, widget: text }
+          - { label: Messages heading, name: messages_heading, widget: string }
+          - { label: Coaching heading, name: coaching_heading, widget: string }
+          - { label: Coaching intro, name: coaching_lead, widget: text }
+          - { label: Gallery heading, name: gallery_heading, widget: string }
+          - label: Homepage gallery strip (6 photos look best)
+            name: gallery_strip
+            widget: list
+            field: { label: Photo, name: image, widget: image }
+          - { label: Testimonies heading, name: testimonies_heading, widget: string }
+          - { label: Testimonies intro, name: testimonies_lead, widget: text }
+
+  - name: contact
+    label: Contact & socials
+    files:
+      - name: contact
+        label: Contact details (footer of every page)
+        file: src/_data/contact.json
+        fields:
+          - label: Email
+            name: email
+            widget: string
+            pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Must be an email address"]
+          - { label: Instagram link, name: instagram, widget: string, required: false }
+          - { label: Facebook link, name: facebook, widget: string, required: false }
+          - { label: TikTok link, name: tiktok, widget: string, required: false }
+          - { label: YouTube channel link, name: youtube, widget: string, required: false }
