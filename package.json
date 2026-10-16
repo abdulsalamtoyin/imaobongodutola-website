@@ -4,7 +4,7 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "test": "node --test tests/",
+    "test": "node --test \"tests/*.test.js\"",
     "parity": "npm run build && python3 -I scripts/parity.py tests/baseline _site && python3 -I scripts/check_assets.py _site"
   },
   "dependencies": {
