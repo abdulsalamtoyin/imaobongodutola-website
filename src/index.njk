@@ -66,11 +66,10 @@
       </div>
       <div class="hero__body">
         <div class="shell">
-          <p class="hero__eyebrow">Apostle &middot; Medical Doctor &middot; Purpose Coach &middot; Author</p>
+          <p class="hero__eyebrow">{{ home.hero_eyebrow }}</p>
           <h1 class="hero__title">Dr.&nbsp;Imaobong Odutola</h1>
           <blockquote class="hero__quote">
-            Life becomes truly meaningful when you discover your purpose in Christ
-            and fully surrender to His divine will.
+            {{ home.hero_quote }}
           </blockquote>
           <div class="btn-row">
             <a class="btn btn--on-dark" href="messages.html">Watch her messages</a>
@@ -130,10 +129,8 @@
           </div>
           <div class="split__body">
             <span class="eyebrow">About</span>
-            <h2>An ambassador of Jesus Christ</h2>
-            <p class="lead">A trained Medical Doctor, called to be an Apostle of Jesus
-               Christ, who has devoted her life to raising disciples for the Kingdom
-               of God.</p>
+            <h2>{{ home.about_heading }}</h2>
+            <p class="lead">{{ home.about_lead }}</p>
             <p>Her passion for spreading the Gospel was ignited during her high school
                years through a powerful divine encounter with God that marked the
                beginning of her apostolic assignment. Since then she has remained
@@ -203,10 +200,8 @@
       <div class="band__inner">
         <div class="shell">
           <span class="eyebrow">Coaching</span>
-          <h2>Discover and fulfil your purpose in Christ</h2>
-          <p class="lead">As a certified Purpose Coach, Dr. Imaobong has guided countless
-             individuals into discovering their God-given identity, unlocking hidden
-             potential, and aligning their lives with Heaven’s agenda.</p>
+          <h2>{{ home.coaching_heading }}</h2>
+          <p class="lead">{{ home.coaching_lead }}</p>
           <div class="btn-row">
             <a class="btn btn--on-dark" href="coaching.html">About the coaching</a>
             <a class="btn btn--ghost-on-dark" href="https://forms.gle/4sez6N3LM7c8ij7z6" target="_blank" rel="noopener">Register your interest</a>
@@ -236,32 +231,33 @@
         <div class="rail" style="margin-bottom:3rem">
           <span class="eyebrow">Testimonies</span>
           <div>
-            <h2 style="font-size:var(--t-h2)">What the Lord has done</h2>
-            <p class="lead">Testimonies from believers who have encountered God
-               through these gatherings — and room for you to add yours.</p>
+            <h2 style="font-size:var(--t-h2)">{{ home.testimonies_heading }}</h2>
+            <p class="lead">{{ home.testimonies_lead }}</p>
           </div>
         </div>
 
         <div class="testify">
           <div class="testify__list" data-reveal>
+            {%- if resolved.testimonies.length == 0 %}
             <div class="todo" style="margin-top:0">
               <strong>Needed from Imaobong</strong>
               Three or four real testimonies — the words, the person’s first name,
               and their city. The cards below are built and waiting; nothing here is
               written by us, because a testimony has to be someone’s own.
             </div>
+            {%- endif %}
+            {%- for t in resolved.testimonies %}
+            <figure class="testimonial">
+              <blockquote>{{ t.quote }}</blockquote>
+              <figcaption>{{ t.caption }}</figcaption>
+            </figure>
+            {%- endfor %}
+            {%- for i in range(0, resolved.testimonyPlaceholders) %}
             <figure class="testimonial testimonial--empty">
               <blockquote>Testimony to come</blockquote>
               <figcaption><span class="testimonial__note">Awaiting her words</span></figcaption>
             </figure>
-            <figure class="testimonial testimonial--empty">
-              <blockquote>Testimony to come</blockquote>
-              <figcaption><span class="testimonial__note">Awaiting her words</span></figcaption>
-            </figure>
-            <figure class="testimonial testimonial--empty">
-              <blockquote>Testimony to come</blockquote>
-              <figcaption><span class="testimonial__note">Awaiting her words</span></figcaption>
-            </figure>
+            {%- endfor %}
           </div>
 
           <aside class="testify__share" data-reveal>
