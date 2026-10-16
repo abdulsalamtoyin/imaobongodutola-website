@@ -112,14 +112,14 @@
               <button class="btn" type="submit">Send request</button>
               <p class="field__hint" style="margin-top:1.25rem">
                 She will reply by email. You can also write directly to
-                <a href="mailto:doctorimaobong@gmail.com">doctorimaobong@gmail.com</a>.
+                <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>.
               </p>
             </form>
 
             <div class="todo">
               <strong>Waiting on the new address</strong>
               Requests go to the site’s Netlify Forms inbox and are forwarded to
-              doctorimaobong@gmail.com for now. Imaobong is creating a dedicated
+              {{ contact.email }} for now. Imaobong is creating a dedicated
               address — when it exists, swap it here and in the footer (the README
               has the one-line command) and update the forwarding address in
               Netlify under Forms → Notifications.

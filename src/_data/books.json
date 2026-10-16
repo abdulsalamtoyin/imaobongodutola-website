@@ -1,0 +1,59 @@
+{
+  "items": [
+    {
+      "cover": "assets/img/books/praying-grace.jpg",
+      "cover_alt": "Cover of The Praying Grace by Dr. Imaobong Odutola",
+      "title": "The Praying Grace",
+      "tagline": "When the Kneeling Saint Becomes the Standing Giant",
+      "description": "A call back to the place of prayer — where burdens are exchanged for strength, weakness for grace, and ordinary believers encounter the extraordinary power of God.",
+      "selar_url": "https://selar.com/cr638782m6",
+      "featured": true,
+      "feature_lead": "When the kneeling saint becomes the standing giant.",
+      "feature_blurb": "A guide into the kind of prayer that changes what is possible — written for believers who want more than routine, and who are ready to build a life on communion with God."
+    },
+    {
+      "cover": "assets/img/books/make-the-change.jpg",
+      "cover_alt": "Cover of Make the Change by Dr. Imaobong Odutola",
+      "title": "Make the Change",
+      "tagline": "How to Turn Situations Around and Live the Life of Your Dreams with Joy and Fulfilment",
+      "description": "For anyone who knows there is more to life, more to their walk with God, and more to the purpose they were created for. The change you have been praying for may begin with the change God wants to make in you.",
+      "selar_url": "https://selar.com/694i2x4610",
+      "featured": false,
+      "feature_lead": "",
+      "feature_blurb": ""
+    },
+    {
+      "cover": "assets/img/books/laws-of-favour.jpg",
+      "cover_alt": "Cover of The Laws of Favour by Dr. Imaobong Odutola",
+      "title": "The Laws of Favour",
+      "tagline": "Discover the Keys to Undeniable Success from the Book of Esther",
+      "description": "The spiritual principles that position a believer to walk in the favour of God — the divine advantage that opens doors — consistently rather than occasionally.",
+      "selar_url": "https://selar.com/2q22e6k326",
+      "featured": false,
+      "feature_lead": "",
+      "feature_blurb": ""
+    },
+    {
+      "cover": "assets/img/books/devotional.jpg",
+      "cover_alt": "Cover of Make the Change, a 31-day devotional",
+      "title": "Make the Change Devotional",
+      "tagline": "A 31-Day Devotional",
+      "description": "A daily journey to renew your mind, strengthen your faith and live out God’s purpose, one day at a time.",
+      "selar_url": "https://selar.com/77s616n1u1",
+      "featured": false,
+      "feature_lead": "",
+      "feature_blurb": ""
+    },
+    {
+      "cover": "assets/img/books/kids-affirmations.jpg",
+      "cover_alt": "Cover of The Change Kids Affirmations by Michelle Odutola",
+      "title": "The Change Kids Affirmations",
+      "tagline": "500+ Affirmations with Scriptures · by Michelle Odutola",
+      "description": "Faith-filled biblical affirmations that help children discover who God says they are — and teach them to speak it boldly.",
+      "selar_url": "https://selar.com/6761350701",
+      "featured": false,
+      "feature_lead": "",
+      "feature_blurb": ""
+    }
+  ]
+}
