@@ -55,3 +55,11 @@ test("gallery and home strip resolve thumbs for existing photos", async () => {
   assert.equal(v.gallery[0].thumb, "assets/img/gallery/thumb/g01.jpg");
   assert.deepEqual(v.homeStrip, [{ thumb: "assets/img/gallery/thumb/g03.jpg" }]);
 });
+
+test("an image failure names the item it belongs to", async () => {
+  const missing = "assets/img/uploads/does-not-exist.jpg";
+  await assert.rejects(buildView(raw({ gallery: [{ image: missing, alt: "Crusade night", category: "crusades" }] })), /Gallery photo "Crusade night"/);
+  await assert.rejects(buildView(raw({ books: [{ cover: missing, title: "New Book", selar_url: "https://x" }] })), /Book "New Book"/);
+  await assert.rejects(buildView(raw({ messages: [{ youtube: "2xz-IM-QyTA", thumbnail: missing, title: "Grace", paragraphs: [] }] })), /Message "Grace"/);
+  await assert.rejects(buildView(raw({ home: { gallery_strip: [missing] } })), /Homepage strip photo 1/);
+});

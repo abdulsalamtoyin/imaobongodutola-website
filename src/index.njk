@@ -165,6 +165,7 @@
     </section>
     {%- endif %}
 
+    {%- if resolved.homeMessages.length %}
     <section class="section section--band">
       <span class="watermark" aria-hidden="true">IO</span>
       <div class="shell">
@@ -194,6 +195,7 @@
         <div class="btn-row"><a class="btn btn--ghost" href="messages.html">All messages</a></div>
       </div>
     </section>
+    {%- endif %}
 
     <section class="band">
       <img class="band__bg" src="assets/img/feature/band-cross.jpg" alt="" loading="lazy">
@@ -210,6 +212,7 @@
       </div>
     </section>
 
+    {%- if resolved.homeStrip.length %}
     <section class="section">
       <div class="shell">
         <div class="rail" style="margin-bottom:2.5rem">
@@ -224,6 +227,7 @@
         <div class="btn-row"><a class="btn btn--ghost" href="gallery.html">View the full gallery</a></div>
       </div>
     </section>
+    {%- endif %}
 
     <section class="section section--band" id="testimonies">
       <span class="watermark" aria-hidden="true">IO</span>

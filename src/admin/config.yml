@@ -27,7 +27,8 @@ collections:
                 name: youtube
                 widget: string
                 hint: Paste the link from YouTube's Share button, e.g. https://youtu.be/…
-                pattern: ['(youtu\.be/|youtube\.com/|^[\w-]{11}$)', "Must be a YouTube link"]
+                # Mirrors lib/youtube.js so anything the CMS accepts also builds.
+                pattern: ['^\s*(?:[\w-]{11}|\S*(?:youtu\.be/|[?&]v=|/(?:embed|shorts|live)/)[\w-]{11}(?![\w-])\S*)\s*$', "Must be a link to one YouTube video (use the Share button)"]
               - { label: Thumbnail image, name: thumbnail, widget: image }
               - { label: Small line above the title, name: subtitle, widget: string, required: false }
               - { label: Title, name: title, widget: string }
@@ -132,7 +133,7 @@ collections:
             name: email
             widget: string
             pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Must be an email address"]
-          - { label: Instagram link, name: instagram, widget: string, required: false }
-          - { label: Facebook link, name: facebook, widget: string, required: false }
-          - { label: TikTok link, name: tiktok, widget: string, required: false }
-          - { label: YouTube channel link, name: youtube, widget: string, required: false }
+          - { label: Instagram link, name: instagram, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
+          - { label: Facebook link, name: facebook, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
+          - { label: TikTok link, name: tiktok, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
+          - { label: YouTube channel link, name: youtube, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }

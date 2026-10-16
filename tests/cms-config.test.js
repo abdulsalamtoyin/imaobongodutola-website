@@ -38,3 +38,29 @@ test("gallery categories match the filter buttons", () => {
   const cat = gallery.fields[0].fields.find((x) => x.name === "category");
   assert.deepEqual(cat.options.map((o) => o.value).sort(), ["conferences", "crusades", "ministry"]);
 });
+
+const fieldsOf = (collection) => config.collections.find((c) => c.name === collection).files[0].fields;
+const patternOf = (field) => new RegExp(field.pattern[0]);
+
+test("the CMS YouTube check agrees with the build's parser, so a bad paste can't break publishing", () => {
+  const { youtubeId } = require("../lib/youtube");
+  const re = patternOf(fieldsOf("messages")[0].fields.find((x) => x.name === "youtube"));
+  for (const ok of ["2xz-IM-QyTA", "https://youtu.be/2xz-IM-QyTA?si=abc", "https://www.youtube.com/watch?feature=share&v=2xz-IM-QyTA&t=42s",
+    "https://www.youtube.com/shorts/2xz-IM-QyTA", "https://www.youtube.com/live/2xz-IM-QyTA?si=x", " https://youtu.be/2xz-IM-QyTA "]) {
+    assert.ok(re.test(ok), `CMS should accept ${ok}`);
+    assert.doesNotThrow(() => youtubeId(ok));
+  }
+  for (const bad of ["https://www.youtube.com/@imaobongodutola", "https://www.youtube.com/playlist?list=PL123", "https://youtu.be/x", "https://vimeo.com/123456789"]) {
+    assert.ok(!re.test(bad), `CMS should reject ${bad}`);
+    assert.throws(() => youtubeId(bad));
+  }
+});
+
+test("social links must be full https:// links (a bare domain would 404 on every page)", () => {
+  for (const name of ["instagram", "facebook", "tiktok", "youtube"]) {
+    const field = fieldsOf("contact").find((x) => x.name === name);
+    assert.ok(field.pattern, `${name} has a pattern`);
+    assert.ok(patternOf(field).test("https://www.instagram.com/imaobongodutola/"), name);
+    assert.ok(!patternOf(field).test("instagram.com/imaobongodutola"), name);
+  }
+});

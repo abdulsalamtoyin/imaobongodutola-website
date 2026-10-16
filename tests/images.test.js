@@ -59,3 +59,18 @@ test("galleryVariants maps existing full→thumb and resizes uploads to 1600/700
   assert.match(v.full, /-1600\.jpeg$/);
   assert.match(v.thumb, /-700\.jpeg$/);
 });
+
+test("transparent PNGs get a white background, not black", async () => {
+  const s = sandbox();
+  await sharp({ create: { width: 400, height: 400, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+    .png().toFile(path.join(s.dir, "src/assets/img/uploads/cutout.png"));
+  const url = await resize("assets/img/uploads/cutout.png", 700, s.opts);
+  const { data } = await sharp(path.join(s.dir, "_site", url)).raw().toBuffer({ resolveWithObject: true });
+  assert.ok(data[0] > 245 && data[1] > 245 && data[2] > 245, `first pixel ${data[0]},${data[1]},${data[2]}`);
+});
+
+test("an image that can't be processed names the file", async () => {
+  const s = sandbox();
+  fs.writeFileSync(path.join(s.dir, "src/assets/img/uploads/broken.jpg"), "not an image");
+  await assert.rejects(resize("assets/img/uploads/broken.jpg", 700, s.opts), /Image "assets\/img\/uploads\/broken\.jpg" could not be processed/);
+});

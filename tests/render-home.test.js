@@ -35,3 +35,12 @@ test("homepage text fields reach the page", () => {
   assert.ok(html.includes("A brand new quote."));
   assert.ok(html.includes("New coaching heading"));
 });
+
+test("emptied homepage strip and messages hide their whole sections", () => {
+  const page = buildWith({ "home.json": { ...HOME, gallery_strip: [] }, "messages.json": { items: [] } });
+  const html = page("index.html");
+  assert.ok(!html.includes("From the gatherings"));
+  assert.ok(!html.includes("View the full gallery"));
+  assert.ok(!html.includes("Teaching that awakens"));
+  assert.ok(!html.includes(">All messages<"));
+});
