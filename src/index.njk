@@ -174,32 +174,25 @@
         <div class="rail" style="margin-bottom:3rem">
           <span class="eyebrow">Messages</span>
           <div>
-            <h2 style="font-size:var(--t-h2)">Teaching that awakens</h2>
+            <h2 style="font-size:var(--t-h2)">{{ home.messages_heading }}</h2>
           </div>
         </div>
         <div class="messages">
+        {%- for m in resolved.homeMessages %}
         <article class="message" data-reveal>
-          <div class="yt" data-yt="2xz-IM-QyTA" data-yt-title="The Divine Mandate" role="button" tabindex="0">
-            <img src="assets/img/feature/podium-stars.jpg" alt="Dr. Imaobong Odutola preaching" loading="lazy">
+          <div class="yt" data-yt="{{ m.youtubeId }}" data-yt-title="{{ m.title }}" role="button" tabindex="0">
+            <img src="{{ m.thumbnail }}" alt="Dr. Imaobong Odutola preaching" loading="lazy">
             <span class="yt__play" aria-hidden="true"></span>
           </div>
           <div>
-            <h3>The Divine Mandate</h3>
-            <p>Every believer is created with a divine assignment. This message unveils the importance of understanding God’s mandate and walking in alignment with His eternal purpose, challenging believers to move beyond ordinary Christianity into a life of kingdom responsibility.</p>
+            <h3>{{ m.title }}</h3>
+            {%- if m.paragraphs[0] %}
+            <p>{{ m.paragraphs[0] }}</p>
+            {%- endif %}
             <a class="link" href="messages.html">Read the full message</a>
           </div>
         </article>
-        <article class="message" data-reveal>
-          <div class="yt" data-yt="Henup4p2Z2M" data-yt-title="The Person of the Holy Spirit" role="button" tabindex="0">
-            <img src="assets/img/feature/worship.jpg" alt="Dr. Imaobong Odutola preaching" loading="lazy">
-            <span class="yt__play" aria-hidden="true"></span>
-          </div>
-          <div>
-            <h3>The Person of the Holy Spirit</h3>
-            <p>The Holy Spirit is not merely a force, an experience, or a doctrine. He is the third Person of the Trinity who desires relationship, fellowship and partnership with every believer.</p>
-            <a class="link" href="messages.html">Read the full message</a>
-          </div>
-        </article>
+        {%- endfor %}
         </div>
         <div class="btn-row"><a class="btn btn--ghost" href="messages.html">All messages</a></div>
       </div>

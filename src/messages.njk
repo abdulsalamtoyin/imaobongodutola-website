@@ -57,54 +57,23 @@
     <section class="section section--tight">
       <div class="shell">
         <div class="messages">
+        {%- for m in resolved.messages %}
         <article class="message" data-reveal>
-          <div class="yt" data-yt="2xz-IM-QyTA" data-yt-title="The Divine Mandate" role="button" tabindex="0">
-            <img src="assets/img/feature/podium-stars.jpg" alt="Dr. Imaobong Odutola preaching" loading="lazy">
+          <div class="yt" data-yt="{{ m.youtubeId }}" data-yt-title="{{ m.title }}" role="button" tabindex="0">
+            <img src="{{ m.thumbnail }}" alt="Dr. Imaobong Odutola preaching" loading="lazy">
             <span class="yt__play" aria-hidden="true"></span>
           </div>
           <div>
-            <span class="eyebrow">Discovering God’s Eternal Purpose for Your Life</span>
-            <h3>The Divine Mandate</h3>
-            <p>Every believer is created with a divine assignment. This message unveils the importance of understanding God’s mandate and walking in alignment with His eternal purpose, challenging believers to move beyond ordinary Christianity into a life of kingdom responsibility.</p>
-            <p>Purpose is not discovered through human ambition but through intimacy with God and obedience to His calling. Believers are encouraged to embrace their identity, recognise their spiritual assignment, and become agents of transformation in their families, communities and generations.</p>
+            {%- if m.subtitle %}
+            <span class="eyebrow">{{ m.subtitle }}</span>
+            {%- endif %}
+            <h3>{{ m.title }}</h3>
+            {%- for p in m.paragraphs %}
+            <p>{{ p }}</p>
+            {%- endfor %}
           </div>
         </article>
-        <article class="message" data-reveal>
-          <div class="yt" data-yt="Henup4p2Z2M" data-yt-title="The Person of the Holy Spirit" role="button" tabindex="0">
-            <img src="assets/img/feature/worship.jpg" alt="Dr. Imaobong Odutola preaching" loading="lazy">
-            <span class="yt__play" aria-hidden="true"></span>
-          </div>
-          <div>
-            <span class="eyebrow">Knowing the One Who Empowers the Believer</span>
-            <h3>The Person of the Holy Spirit</h3>
-            <p>The Holy Spirit is not merely a force, an experience, or a doctrine. He is the third Person of the Trinity who desires relationship, fellowship and partnership with every believer.</p>
-            <p>This teaching reveals the Holy Spirit as Helper, Teacher, Comforter, Guide and Source of divine empowerment — moving believers from knowing about Him to walking daily with Him.</p>
-          </div>
-        </article>
-        <article class="message" data-reveal>
-          <div class="yt" data-yt="e_xPS-hvBPA" data-yt-title="The Anointing of the Holy Spirit" role="button" tabindex="0">
-            <img src="assets/img/feature/conference.jpg" alt="Dr. Imaobong Odutola preaching" loading="lazy">
-            <span class="yt__play" aria-hidden="true"></span>
-          </div>
-          <div>
-            <span class="eyebrow">Empowered for Kingdom Impact</span>
-            <h3>The Anointing of the Holy Spirit</h3>
-            <p>The anointing is God’s divine empowerment upon a believer to accomplish His purposes beyond human ability, equipping believers for service, spiritual authority and kingdom advancement.</p>
-            <p>The anointing brings transformation, breaks limitations, and enables believers to become effective witnesses of Christ. A call into deeper surrender, consecration and dependence on the Holy Spirit.</p>
-          </div>
-        </article>
-        <article class="message" data-reveal>
-          <div class="yt" data-yt="lOsH9hMgep8" data-yt-title="The Revelation of Jesus" role="button" tabindex="0">
-            <img src="assets/img/feature/stage-dramatic.jpg" alt="Dr. Imaobong Odutola preaching" loading="lazy">
-            <span class="yt__play" aria-hidden="true"></span>
-          </div>
-          <div>
-            <span class="eyebrow">Encountering the Fullness of Christ</span>
-            <h3>The Revelation of Jesus</h3>
-            <p>The greatest revelation a believer can receive is the revelation of Jesus Christ — knowing Him beyond religious knowledge and encountering Him as Lord, Saviour, King and the centre of God’s eternal plan.</p>
-            <p>As Christ is revealed, lives are transformed, identities are established, and believers are positioned to walk in the fullness of God’s purpose.</p>
-          </div>
-        </article>
+        {%- endfor %}
         </div>
       </div>
     </section>
