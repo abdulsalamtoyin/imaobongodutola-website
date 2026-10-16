@@ -13,10 +13,12 @@ function buildWith(overrides = {}) {
   for (const p of ["lib", ".eleventy.js", "package.json"]) {
     fs.cpSync(path.join(ROOT, p), path.join(dir, p), { recursive: true });
   }
-  const assets = `${path.sep}src${path.sep}assets${path.sep}`;
+  const assets = path.join(ROOT, "src", "assets");
+  const uploads = path.join(assets, "img", "uploads");
   fs.cpSync(path.join(ROOT, "src"), path.join(dir, "src"), {
     recursive: true,
-    filter: (src) => !src.includes(assets) || src.includes(`${path.sep}uploads`),
+    // Skip assets except the uploads folder and the directories leading to it.
+    filter: (src) => !src.startsWith(assets + path.sep) || uploads.startsWith(src) || src.startsWith(uploads),
   });
   fs.symlinkSync(path.join(ROOT, "node_modules"), path.join(dir, "node_modules"));
   for (const [file, data] of Object.entries(overrides)) {

@@ -219,15 +219,12 @@
       <div class="shell">
         <div class="rail" style="margin-bottom:2.5rem">
           <span class="eyebrow">Gallery</span>
-          <div><h2 style="font-size:var(--t-h2)">From the gatherings</h2></div>
+          <div><h2 style="font-size:var(--t-h2)">{{ home.gallery_heading }}</h2></div>
         </div>
         <div class="gallery" data-reveal>
-          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="assets/img/gallery/thumb/g03.jpg" alt="From the gatherings" loading="lazy"></a>
-          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="assets/img/gallery/thumb/g18.jpg" alt="From the gatherings" loading="lazy"></a>
-          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="assets/img/gallery/thumb/g14.jpg" alt="From the gatherings" loading="lazy"></a>
-          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="assets/img/gallery/thumb/g09.jpg" alt="From the gatherings" loading="lazy"></a>
-          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="assets/img/gallery/thumb/g21.jpg" alt="From the gatherings" loading="lazy"></a>
-          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="assets/img/gallery/thumb/g06.jpg" alt="From the gatherings" loading="lazy"></a>
+          {%- for s in resolved.homeStrip %}
+          <a href="gallery.html" class="gallery__item" style="cursor:pointer"><img src="{{ s.thumb }}" alt="From the gatherings" loading="lazy"></a>
+          {%- endfor %}
         </div>
         <div class="btn-row"><a class="btn btn--ghost" href="gallery.html">View the full gallery</a></div>
       </div>
