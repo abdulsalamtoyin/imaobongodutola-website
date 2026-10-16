@@ -146,27 +146,27 @@
       </div>
     </section>
 
+    {%- if resolved.featuredBook %}{% set fb = resolved.featuredBook %}
     <section class="section">
       <div class="shell">
         <div class="book-feature" data-reveal>
           <div>
             <span class="eyebrow">Featured book</span>
-            <h2 style="font-size:var(--t-h2);margin-bottom:1.25rem">The Praying Grace</h2>
-            <p class="lead">When the kneeling saint becomes the standing giant.</p>
-            <p>A guide into the kind of prayer that changes what is possible — written
-               for believers who want more than routine, and who are ready to build a
-               life on communion with God.</p>
+            <h2 style="font-size:var(--t-h2);margin-bottom:1.25rem">{{ fb.title }}</h2>
+            <p class="lead">{{ fb.lead }}</p>
+            <p>{{ fb.blurb }}</p>
             <div class="btn-row">
-              <a class="btn" href="https://selar.com/cr638782m6" target="_blank" rel="noopener">Buy on Selar</a>
+              <a class="btn" href="{{ fb.selar_url }}" target="_blank" rel="noopener">Buy on Selar</a>
               <a class="btn btn--ghost" href="store.html">All books</a>
             </div>
           </div>
           <div class="book-cover book-cover--image">
-            <img src="assets/img/books/praying-grace.jpg" alt="Cover of The Praying Grace by Dr. Imaobong Odutola" loading="lazy" width="640">
+            <img src="{{ fb.cover }}" alt="{{ fb.cover_alt }}" loading="lazy" width="640">
           </div>
         </div>
       </div>
     </section>
+    {%- endif %}
 
     <section class="section section--band">
       <span class="watermark" aria-hidden="true">IO</span>

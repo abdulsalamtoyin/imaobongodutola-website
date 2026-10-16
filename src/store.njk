@@ -57,61 +57,21 @@
     <section class="section section--tight">
       <div class="shell">
         <div class="books-grid">
+          {%- for b in resolved.books %}
           <article class="book-card" data-reveal>
             <div class="book-cover book-cover--image">
-              <img src="assets/img/books/praying-grace.jpg" alt="Cover of The Praying Grace by Dr. Imaobong Odutola" loading="lazy" width="640">
+              <img src="{{ b.cover }}" alt="{{ b.cover_alt }}" loading="lazy" width="640">
             </div>
-            <h3>The Praying Grace</h3>
-            <p style="color:var(--brass);font-weight:600;margin-bottom:0.6rem">When the Kneeling Saint Becomes the Standing Giant</p>
-            <p>A call back to the place of prayer — where burdens are exchanged for strength, weakness for grace, and ordinary believers encounter the extraordinary power of God.</p>
+            <h3>{{ b.title }}</h3>
+            {%- if b.tagline %}
+            <p style="color:var(--brass);font-weight:600;margin-bottom:0.6rem">{{ b.tagline }}</p>
+            {%- endif %}
+            <p>{{ b.description }}</p>
             <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn" href="https://selar.com/cr638782m6" target="_blank" rel="noopener">Buy on Selar</a>
+              <a class="btn" href="{{ b.selar_url }}" target="_blank" rel="noopener">Buy on Selar</a>
             </div>
           </article>
-          <article class="book-card" data-reveal>
-            <div class="book-cover book-cover--image">
-              <img src="assets/img/books/make-the-change.jpg" alt="Cover of Make the Change by Dr. Imaobong Odutola" loading="lazy" width="640">
-            </div>
-            <h3>Make the Change</h3>
-            <p style="color:var(--brass);font-weight:600;margin-bottom:0.6rem">How to Turn Situations Around and Live the Life of Your Dreams with Joy and Fulfilment</p>
-            <p>For anyone who knows there is more to life, more to their walk with God, and more to the purpose they were created for. The change you have been praying for may begin with the change God wants to make in you.</p>
-            <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn" href="https://selar.com/694i2x4610" target="_blank" rel="noopener">Buy on Selar</a>
-            </div>
-          </article>
-          <article class="book-card" data-reveal>
-            <div class="book-cover book-cover--image">
-              <img src="assets/img/books/laws-of-favour.jpg" alt="Cover of The Laws of Favour by Dr. Imaobong Odutola" loading="lazy" width="640">
-            </div>
-            <h3>The Laws of Favour</h3>
-            <p style="color:var(--brass);font-weight:600;margin-bottom:0.6rem">Discover the Keys to Undeniable Success from the Book of Esther</p>
-            <p>The spiritual principles that position a believer to walk in the favour of God — the divine advantage that opens doors — consistently rather than occasionally.</p>
-            <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn" href="https://selar.com/2q22e6k326" target="_blank" rel="noopener">Buy on Selar</a>
-            </div>
-          </article>
-          <article class="book-card" data-reveal>
-            <div class="book-cover book-cover--image">
-              <img src="assets/img/books/devotional.jpg" alt="Cover of Make the Change, a 31-day devotional" loading="lazy" width="640">
-            </div>
-            <h3>Make the Change Devotional</h3>
-            <p style="color:var(--brass);font-weight:600;margin-bottom:0.6rem">A 31-Day Devotional</p>
-            <p>A daily journey to renew your mind, strengthen your faith and live out God’s purpose, one day at a time.</p>
-            <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn" href="https://selar.com/77s616n1u1" target="_blank" rel="noopener">Buy on Selar</a>
-            </div>
-          </article>
-          <article class="book-card" data-reveal>
-            <div class="book-cover book-cover--image">
-              <img src="assets/img/books/kids-affirmations.jpg" alt="Cover of The Change Kids Affirmations by Michelle Odutola" loading="lazy" width="640">
-            </div>
-            <h3>The Change Kids Affirmations</h3>
-            <p style="color:var(--brass);font-weight:600;margin-bottom:0.6rem">500+ Affirmations with Scriptures · by Michelle Odutola</p>
-            <p>Faith-filled biblical affirmations that help children discover who God says they are — and teach them to speak it boldly.</p>
-            <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn" href="https://selar.com/6761350701" target="_blank" rel="noopener">Buy on Selar</a>
-            </div>
-          </article>
+          {%- endfor %}
         </div>
         <div class="btn-row" style="margin-top:3.5rem">
           <a class="btn btn--ghost" href="https://selar.com/m/imaobongodutola" target="_blank" rel="noopener">See everything on Selar</a>
