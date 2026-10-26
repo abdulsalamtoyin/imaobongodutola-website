@@ -1,0 +1,20 @@
+/* Preview-pane-only helpers; never loaded by the public site. */
+body { background: var(--paper, #fbf8f3); }
+.pv-note {
+  position: sticky; top: 0; z-index: 5;
+  font: 600 0.72rem/1 "IBM Plex Sans", system-ui, sans-serif;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: #1f1a17; color: #e8d3a3; padding: 0.7rem 1.25rem;
+}
+.pv .section { padding-block: 3rem; }
+.pv .band { min-height: 0; }
+.pv-missing {
+  display: grid; place-items: center; aspect-ratio: 4 / 3;
+  background: repeating-linear-gradient(45deg, #eee7dc 0 10px, #f6f1e8 10px 20px);
+  color: #8a7a66; font: 500 0.85rem "IBM Plex Sans", sans-serif;
+}
+.pv-error {
+  margin-top: 0.75rem; padding: 0.6rem 0.8rem; border-radius: 6px;
+  background: #fdecea; color: #8a1c12; font-size: 0.9rem;
+}
+.pv-hint { color: #8a7a66; font-style: italic; }

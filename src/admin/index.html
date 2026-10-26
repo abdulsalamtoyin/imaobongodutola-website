@@ -5,9 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Website editor · Imaobong Odutola</title>
+  <link rel="icon" href="/assets/brand/logo.png">
+  <style>
+    #splash {
+      position: fixed; inset: 0; z-index: 9999; display: grid; place-content: center; gap: 1.25rem;
+      background: #1f1a17; color: #e8d3a3; text-align: center;
+      font: 500 0.8rem/1.4 system-ui, sans-serif; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: opacity 0.4s;
+    }
+    #splash img { width: 150px; margin-inline: auto; }
+    #splash.done { opacity: 0; pointer-events: none; }
+  </style>
 </head>
 <body>
+  <div id="splash"><img src="/assets/brand/logo.png" alt="">Opening your website editor…</div>
   <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"
           integrity="sha384-d2pbrhjc5asvSK35gKkrgRIk0Wq+2CQynWnXtSsYWQawXCgBXhcAK737jBAKXT4T" crossorigin="anonymous"></script>
+  <script src="/admin/preview-render.js"></script>
+  <script src="/admin/preview.js"></script>
+  <script>
+    // Fade the splash once Decap has drawn its first screen.
+    new MutationObserver(function (_, obs) {
+      var root = document.getElementById("nc-root");
+      if (root && root.children.length) { document.getElementById("splash").classList.add("done"); obs.disconnect(); }
+    }).observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { document.getElementById("splash").classList.add("done"); }, 8000);
+  </script>
 </body>
 </html>

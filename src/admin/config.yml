@@ -31,47 +31,60 @@ public_folder: assets/img/uploads
 collections:
   - name: messages
     label: Messages
+    label_singular: Message
+    description: Sermons and teachings with a YouTube video. They appear on the Messages page in this order; the first two also show on the homepage.
     files:
       - name: messages
-        label: Messages (Messages page; the first two also show on the homepage)
+        label: All messages
         file: src/_data/messages.json
         fields:
           - label: Messages
+            label_singular: Message
             name: items
             widget: list
+            collapsed: true
             summary: "{{fields.title}}"
+            hint: Drag to reorder. The top two appear on the homepage.
             fields:
               - label: YouTube link
                 name: youtube
                 widget: string
-                hint: Paste the link from YouTube's Share button, e.g. https://youtu.be/…
+                hint: "On YouTube, press Share → Copy, then paste here (e.g. https://youtu.be/…)."
                 # Mirrors lib/youtube.js so anything the CMS accepts also builds.
                 pattern: ['^\s*(?:[\w-]{11}|\S*(?:youtu\.be/|[?&]v=|/(?:embed|shorts|live)/)[\w-]{11}(?![\w-])\S*)\s*$', "Must be a link to one YouTube video (use the Share button)"]
-              - { label: Thumbnail image, name: thumbnail, widget: image }
-              - { label: Small line above the title, name: subtitle, widget: string, required: false }
-              - { label: Title, name: title, widget: string }
+              - { label: Thumbnail picture, name: thumbnail, widget: image, hint: "The picture shown before the video plays. A wide (landscape) photo looks best." }
+              - { label: Small line above the title, name: subtitle, widget: string, required: false, hint: "Optional, shown in small gold capitals — e.g. the event or date." }
+              - { label: Title, name: title, widget: string, hint: The message title, shown in large type. }
               - label: Paragraphs
+                label_singular: Paragraph
                 name: paragraphs
                 widget: list
-                field: { label: Paragraph, name: paragraph, widget: text }
+                hint: A short summary of the message. The first paragraph also appears on the homepage.
+                field: { label: Paragraph, name: paragraph, widget: text, hint: One paragraph of text. }
 
   - name: gallery
     label: Gallery
+    label_singular: Photo
+    description: Photos on the Gallery page. Visitors can filter them by category and open them full size.
     files:
       - name: gallery
         label: Gallery photos
         file: src/_data/gallery.json
         fields:
           - label: Photos
+            label_singular: Photo
             name: items
             widget: list
-            summary: "{{fields.alt}}"
+            collapsed: true
+            summary: "{{fields.alt}} · {{fields.category}}"
+            hint: Drag to reorder. New photos are resized automatically — any size from your phone is fine.
             fields:
-              - { label: Photo, name: image, widget: image }
-              - { label: Describe the photo (for blind visitors and Google), name: alt, widget: string }
+              - { label: Photo, name: image, widget: image, hint: "Upload from your phone or computer. On iPhone, choose “Most Compatible” in Camera settings if a photo won't upload." }
+              - { label: Description, name: alt, widget: string, hint: "Describe the photo in a few words (e.g. “Worship at the Lagos crusade”). Read aloud to blind visitors and used by Google." }
               - label: Category
                 name: category
                 widget: select
+                hint: Which filter button on the Gallery page shows this photo.
                 options:
                   - { label: "Conferences & preaching", value: conferences }
                   - { label: "Ministry & impartation", value: ministry }
@@ -79,79 +92,94 @@ collections:
 
   - name: books
     label: Books
+    label_singular: Book
+    description: Books on the Store page. The book ticked as featured (or else the first one) is promoted on the homepage.
     files:
       - name: books
-        label: Books (Store page and homepage)
+        label: All books
         file: src/_data/books.json
         fields:
           - label: Books
+            label_singular: Book
             name: items
             widget: list
+            collapsed: true
             summary: "{{fields.title}}"
+            hint: Drag to reorder how books appear on the Store page.
             fields:
-              - { label: Cover, name: cover, widget: image }
-              - { label: Describe the cover, name: cover_alt, widget: string }
-              - { label: Title, name: title, widget: string }
-              - { label: Subtitle (gold line), name: tagline, widget: string, required: false }
-              - { label: Description, name: description, widget: text }
+              - { label: Cover, name: cover, widget: image, hint: The front cover. A portrait (tall) image looks best. }
+              - { label: Describe the cover, name: cover_alt, widget: string, hint: "A few words for blind visitors, e.g. “Cover of The Praying Grace”." }
+              - { label: Title, name: title, widget: string, hint: The book title. }
+              - { label: Subtitle (gold line), name: tagline, widget: string, required: false, hint: Optional short line shown in gold under the title. }
+              - { label: Description, name: description, widget: text, hint: A few sentences about the book. }
               - label: Selar link
                 name: selar_url
                 widget: string
+                hint: The book's page on Selar, where people buy it. Starts with https://
                 pattern: ['^https?://', "Must start with https://"]
-              - { label: Feature this book on the homepage, name: featured, widget: boolean, default: false, required: false }
-              - { label: Homepage line (optional), name: feature_lead, widget: string, required: false }
-              - { label: Homepage description (optional), name: feature_blurb, widget: text, required: false }
+              - { label: Feature this book on the homepage, name: featured, widget: boolean, default: false, required: false, hint: Tick one book. If none is ticked, the first book is featured. }
+              - { label: Homepage line (optional), name: feature_lead, widget: string, required: false, hint: Shown large on the homepage. Leave empty to use the subtitle. }
+              - { label: Homepage description (optional), name: feature_blurb, widget: text, required: false, hint: Shown on the homepage. Leave empty to use the description. }
 
   - name: testimonies
     label: Testimonies
+    label_singular: Testimony
+    description: Testimonies shown on the homepage. Until there are three, the remaining spaces show “Testimony to come”.
     files:
       - name: testimonies
-        label: Testimonies (homepage)
+        label: All testimonies
         file: src/_data/testimonies.json
         fields:
           - label: Testimonies
+            label_singular: Testimony
             name: items
             widget: list
-            summary: "{{fields.name}}"
+            collapsed: true
+            summary: "{{fields.name}} — {{fields.city}}"
+            hint: Only share a testimony with the person's permission.
             fields:
-              - { label: Testimony, name: quote, widget: text }
-              - { label: First name, name: name, widget: string }
-              - { label: City, name: city, widget: string, required: false }
+              - { label: Testimony, name: quote, widget: text, hint: "The person's own words." }
+              - { label: First name, name: name, widget: string, hint: First name only, for privacy. }
+              - { label: City, name: city, widget: string, required: false, hint: Optional — shown after the name. }
 
   - name: home
     label: Homepage text
+    description: The words and gallery strip on the homepage, from top to bottom.
     files:
       - name: home
         label: Homepage text and gallery strip
         file: src/_data/home.json
         fields:
-          - { label: Line above your name, name: hero_eyebrow, widget: string }
-          - { label: Quote under your name, name: hero_quote, widget: text }
-          - { label: About heading, name: about_heading, widget: string }
-          - { label: About intro, name: about_lead, widget: text }
-          - { label: Messages heading, name: messages_heading, widget: string }
-          - { label: Coaching heading, name: coaching_heading, widget: string }
-          - { label: Coaching intro, name: coaching_lead, widget: text }
-          - { label: Gallery heading, name: gallery_heading, widget: string }
-          - label: Homepage gallery strip (6 photos look best)
+          - { label: Line above your name, name: hero_eyebrow, widget: string, hint: Small gold line at the very top of the homepage. }
+          - { label: Quote under your name, name: hero_quote, widget: text, hint: The quote over the opening video. }
+          - { label: About heading, name: about_heading, widget: string, hint: Heading of the About section. }
+          - { label: About intro, name: about_lead, widget: text, hint: First paragraph of the About section. }
+          - { label: Messages heading, name: messages_heading, widget: string, hint: Heading above your two newest messages. }
+          - { label: Coaching heading, name: coaching_heading, widget: string, hint: Heading of the dark coaching banner. }
+          - { label: Coaching intro, name: coaching_lead, widget: text, hint: Text under the coaching heading. }
+          - { label: Gallery heading, name: gallery_heading, widget: string, hint: Heading above the photo strip. }
+          - label: Homepage gallery strip
             name: gallery_strip
             widget: list
-            field: { label: Photo, name: image, widget: image }
-          - { label: Testimonies heading, name: testimonies_heading, widget: string }
-          - { label: Testimonies intro, name: testimonies_lead, widget: text }
+            hint: Six photos look best. Drag to reorder.
+            field: { label: Photo, name: image, widget: image, hint: Choose an existing photo or upload a new one. }
+          - { label: Testimonies heading, name: testimonies_heading, widget: string, hint: Heading of the testimonies section. }
+          - { label: Testimonies intro, name: testimonies_lead, widget: text, hint: Text under the testimonies heading. }
 
   - name: contact
     label: Contact & socials
+    description: Your email and social media links, shown in the footer of every page.
     files:
       - name: contact
-        label: Contact details (footer of every page)
+        label: Contact details
         file: src/_data/contact.json
         fields:
           - label: Email
             name: email
             widget: string
+            hint: Shown in the footer and used by the Coaching and Speaking pages.
             pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Must be an email address"]
-          - { label: Instagram link, name: instagram, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
-          - { label: Facebook link, name: facebook, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
-          - { label: TikTok link, name: tiktok, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
-          - { label: YouTube channel link, name: youtube, widget: string, required: false, pattern: ['^https?://', "Must start with https://"] }
+          - { label: Instagram link, name: instagram, widget: string, required: false, hint: "Full link, starting https://. Leave empty to hide the icon.", pattern: ['^https?://', "Must start with https://"] }
+          - { label: Facebook link, name: facebook, widget: string, required: false, hint: "Full link, starting https://. Leave empty to hide the icon.", pattern: ['^https?://', "Must start with https://"] }
+          - { label: TikTok link, name: tiktok, widget: string, required: false, hint: "Full link, starting https://. Leave empty to hide the icon.", pattern: ['^https?://', "Must start with https://"] }
+          - { label: YouTube channel link, name: youtube, widget: string, required: false, hint: "Full link, starting https://. Leave empty to hide the icon.", pattern: ['^https?://', "Must start with https://"] }

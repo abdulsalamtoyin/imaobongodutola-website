@@ -64,3 +64,35 @@ test("social links must be full https:// links (a bare domain would 404 on every
     assert.ok(!patternOf(field).test("instagram.com/imaobongodutola"), name);
   }
 });
+
+function leafFields(fields, trail = []) {
+  return fields.flatMap((f) => {
+    if (f.fields) return [f, ...leafFields(f.fields, [...trail, f.name])];
+    if (f.field) return [f, ...leafFields([f.field], [...trail, f.name])];
+    return [f];
+  });
+}
+
+test("every section explains itself and every field has help text", () => {
+  for (const coll of config.collections) {
+    assert.ok(coll.description, `${coll.name}: no description`);
+    for (const f of coll.files) {
+      for (const field of leafFields(f.fields)) {
+        assert.ok(field.label, `${coll.name}.${field.name}: no label`);
+        assert.ok(field.hint, `${coll.name}.${field.name}: no hint`);
+      }
+    }
+  }
+});
+
+test("long lists start collapsed and show a readable summary per row", () => {
+  for (const coll of config.collections) {
+    for (const f of coll.files) {
+      for (const field of f.fields.filter((x) => x.widget === "list" && x.fields)) {
+        assert.equal(field.collapsed, true, `${coll.name}.${field.name} not collapsed`);
+        assert.ok(field.label_singular, `${coll.name}.${field.name}: no label_singular`);
+        assert.ok(field.summary, `${coll.name}.${field.name}: no summary`);
+      }
+    }
+  }
+});
